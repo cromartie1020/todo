@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Todo{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'todo_app/css/style.css' %}">
+    {% load static %}
+    {% load i18n %}
+    {% load crispy_forms_tags %}
+    {% block extra_head %}
+    {% endblock extra_head %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .messages {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+        }
+        .messages li {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .messages li.success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .messages li.error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+        .messages li.info {
+            background-color: #d9edf7;
+            color: #31708f;
+        }
+        .messages li.warning {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+        }
+    </style>
+    {% block styles %}
+    {% endblock styles %}
+    {% block scripts %}
+    {% endblock scripts %}  
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}    
+    {% block extra_css %}
+    {% endblock extra_css %}
+    {% block extra_js %}
+    {% endblock extra_js %} 
+    {% block extra_meta %}
+    {% endblock extra_meta %}
+    {% block extra_links %}
+    {% endblock extra_links %}
+    {% block extra_title %}
+    {% endblock extra_title %}
+    {% block extra_body %}
+    {% endblock extra_body %}
+    {% block extra_header %}
+    {% endblock extra_header %}
+    {% block extra_footer %}
+    {% endblock extra_footer %}
+    {% block extra_content %}
+    {% endblock extra_content %}
+    
+</head>
+<body>
+    <header>
+        <h1>Todo Application</h1>
+        <nav>
+            <ul>
+                
+                <li><a href="{% url 'todo_list' %}">Todo List</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'profile' %}">Change Password</a></li>
+                    <li><a href="{% url 'show_profile' %}">Profile</a></li>
+                    <li><a href="{% url 'todo_list' %}">Todo List</a></li>
+                    <li><a href="{% url 'todo_list' %}">Add Todo</a></li>
+                    <li><a href="{% url 'todo_completed' %}">Completed Todos</a></li>
+                    <li><a href="{% url 'todo_incomplete' %}">Incomplete Todos</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+        <main>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% block main_content %}
+            {% endblock main_content %}
+        </main>  
+    {% endblock content %}
+    
+</body>
+</html>

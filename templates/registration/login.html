@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Todo Detail - Todo Application{% endblock title %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock extra_styles %}
+
+{% block main_content %}
+    <h2>Login</h2>
+    <div class="todo-detail">
+        <p>Todo ID: {{ todo_id }}</p>
+        <!-- Add more details about the todo item here -->
+    </div>
+{% endblock main_content %}  
+{% block content %}
+    <main>
+        <h2>Login</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.</p>
+    </main>
+{% endblock content %} 
+

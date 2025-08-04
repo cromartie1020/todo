@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Todo List - Todo Application{% endblock title %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock extra_styles %}
+
+{% block main_content %}
+    <h2>Todo Detail</h2>
+    <div class="todo-list">
+        <p>Todo ID: {{ todo_id }}</p>
+        <!-- Add more details about the todo item here -->
+    </div>
+{% endblock main_content %}    
+{% block content %}
+    <main>
+        
+        <h2>Todo List</h2>
+        <form action="" method='POST'>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" placeholder="Enter Todo...">
+        </form>
+
+        <ul class="todo-list">
+            {% for todo in todos %}
+                <li>
+                    <a href="{% url 'todo_detail' todo.id %}">{{ todo.title }}</a>
+                    <!-- Add more details or actions for each todo item here -->
+                </li>
+            {% empty %}
+                <li>No todos available.</li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock content %}

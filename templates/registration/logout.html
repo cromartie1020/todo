@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Logout - Todo Application{% endblock title %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock extra_styles %}
+
+{% block main_content %}
+    <h2>Logout</h2>
+    <p>You have been successfully logged out.</p>
+{% endblock main_content %}
+
+{% block content %}
+    <main>
+        <h2>Goodbye!</h2>
+        <p>Thank you for using the Todo Application. We hope to see you again soon!</p>
+        <a href="{% url 'login' %}">Login Again</a>
+    </main>
+{% endblock content %}

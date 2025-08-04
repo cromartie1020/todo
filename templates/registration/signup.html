@@ -1,0 +1,32 @@
+{% extends 'base.html'  %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Home - Todo Application{% endblock title %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock extra_styles %}                                 
+
+{% block main_content %}
+    <h2>Welcome to the Todo Application</h2>
+    <p>Manage your tasks efficiently.</p>
+{% endblock main_content %}
+
+{% block content %}
+    <main>
+        <h2>Todo List</h2>
+        <!-- Add your todo list content here -->
+    </main>
+
+
+<div>
+    <h2>Sign Up</h2>
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>     
+</div>
+{% endblock %}
