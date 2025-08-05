@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %} 
 {% load i18n %}
 
 {% block title %}Todo List - Todo Application{% endblock title %}
@@ -21,7 +22,7 @@
         <h2>Todo List</h2>
         <form action="" method='POST'>
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form|crispy }}
             <input type="submit" value="Submit" placeholder="Enter Todo...">
         </form>
 

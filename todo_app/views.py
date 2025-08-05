@@ -97,7 +97,7 @@ def create_todo(request):
     else:
         form = TodoItemForm()
     return render(request, 'todo_app/create_todo.html', {'form': form})  # Render the create form
-#
+
 def complete_todo(request):
     if request.method == 'POST':
         todo_id = request.POST.get('todo_id')

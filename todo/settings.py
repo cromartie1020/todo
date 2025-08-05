@@ -12,7 +12,7 @@ SECRET_KEY= config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cromartie445.pythonanywhere.com']
 
 
 # Application definition
@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'todo_app',
     'crispy_forms',  # Required for authentication      
-    
+    "crispy_bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -113,3 +113,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'todo_list'  # Redirect to todo list after login
 LOGOUT_REDIRECT_URL = 'todo_list'  # Redirect to home after logout
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'  # Using bootstrap version 4
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'  

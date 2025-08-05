@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}incomplete Todo - Todo Application{% endblock title %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock extra_styles %}                                 
+
+{% block main_content %}
+    <h2>incomplete Todo</h2>
+    <p>Mark your tasks as incomplete</p>
+    {% for todo in todos %}
+    {% empty %}
+      No todos  
+    {% endfor %}
+{% endblock main_content %}
+
+{% block content %}
+    <main>
+        <h2>Todo List</h2>
+        <!-- Add your todo list content here -->
+    </main>
+
+    <div>
+        <h2>Incomplete Todo</h2>
+        <form method="post" action="{% url 'todo_completed' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Complete Todo</button>
+        </form>
+        <p>Want to go back? <a href="{% url 'todo_list' %}">Todo List</a>.</p>     
+    </div>
+{% endblock %}  
