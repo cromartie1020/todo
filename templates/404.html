@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}Profile - Todo Application{% endblock title %}
+
+{% block extra_styles %}
+    <link rel="stylesheet" href="{% static 'todo_app/styles.css' %}">
+{% endblock extra_styles %}
+
+{% block main_content %}
+    <h2>User Profile</h2>
+    <div class="profile-detail">
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <!-- Add more user details here -->
+    </div>
+{% endblock main_content %}
+
+{% block content %}
+    <main>
+        <h2>Edit Profile</h2>
+        <form method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update Profile</button>
+        </form>
+    </main>
+{% endblock content %}
+{% block extra_header %}
+    <title>User Profile - Todo Application</title>
+{% endblock extra_header %}
+{% block content %}
+    <main>
+        <h2>Todo Detail</h2>
+        <div class="todo-detail">
+            <p>Todo ID: {{ todo.id }}</p>
+            <!-- Add more details about the todo item here -->
+        </div>
+    </main>
+{% endblock content %}
+
